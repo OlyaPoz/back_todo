@@ -4,20 +4,40 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+     
     }
   };
   Todo.init({
-    item: DataTypes.TEXT
+    body: {
+      allowNull:false,
+      type: DataTypes.TEXT,
+      validate: {
+        isAlphanumeric: true,
+        notNull: true,
+        notEmpty: true,
+      },
+    },
+    isDone: {
+      field: 'is_done',
+      allowNull: false,
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+      validate: {
+        notNull: true,
+      },
+    },
+    deadline: {
+      type: DataTypes.DATE,
+      validate: {
+        isDate: true,
+      },
+    },
   }, {
     sequelize,
     modelName: 'Todo',
+    tableName: 'todos',
+    underscored:true,
   });
   return Todo;
 };
