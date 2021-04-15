@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-const { Todo} = require('../models');
+const { Todo } = require('../db/models/todo');
 
 module.exports.createTodo = async (req, res, next) => {
   try {

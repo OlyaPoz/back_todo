@@ -9,7 +9,7 @@ todoRouter
 todoRouter
   .route('/:todoId')
   .patch(TodoController.updateTodo)
-  .delete(TodoController.deletePower)
-  .get('/:id', TodoController.getTodo);
+  .delete(TodoController.deleteTodo);
+todoRouter.get('/:id', TodoController.getTodo);
 
 module.exports = todoRouter;
