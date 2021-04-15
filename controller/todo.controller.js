@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-const { Todo } = require('../db/models/todo');
+const { Todo } = require('../db/models');
 
 module.exports.createTodo = async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ module.exports.createTodo = async (req, res, next) => {
 module.exports.getTodo = async (req, res, next) => {
   try {
     const {
-      params: id,
+      params: { id },
      } = req;
 
     const todo = await Todo.findByPk(id);
@@ -81,7 +81,7 @@ module.exports.deleteTodo = async (req, res, next) => {
       params: { todoId },
     } = req;
 
-    const rowsCount = await Todo.destroy({ where: { todoId } });
+    const rowsCount = await Todo.destroy({ where: { id: todoId } });
 
     if (rowsCount === 0) {
       return next(createError(404));
