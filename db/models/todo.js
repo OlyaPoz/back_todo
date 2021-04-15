@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       type: DataTypes.TEXT,
       validate: {
-        isAlphanumeric: true,
         notNull: true,
         notEmpty: true,
       },
